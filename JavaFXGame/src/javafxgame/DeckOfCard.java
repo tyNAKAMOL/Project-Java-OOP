@@ -10,7 +10,6 @@ import javafx.scene.image.Image;
 import java.util.Random;
 import javafx.scene.image.ImageView;
 
-
 /**
  *
  * @author beaut
@@ -38,30 +37,46 @@ public class DeckOfCard {
     public Image getImagecards() {
         return imagecards;
     }
-    
-    public String[] nameImage(){                      
-        for(int i=0;i<10;i++){
-            nameImages[i] = "/JavaFXGAME/images/"+temp[i]+".png";
+
+    public String[] nameImage(int z) {
+        switch (z) {
+            case 1 -> {
+                for (int i = 0; i < 10; i++) {
+                    nameImages[i] = "/card1/" + temp[i] + ".png";
+                }
+            }
+            case 2 -> {
+                for (int i = 0; i < 10; i++) {
+                    nameImages[i] = "/card2/" + temp[i] + ".png";
+                }
+            }
+            case 3 -> {
+                for (int i = 0; i < 10; i++) {
+                    nameImages[i] = "/card3/" + temp[i] + ".png";
+                }
+            }
+            default -> {
+            }
         }
         return nameImages;
     }
-    
-    public void time(){
+
+    public void time() {
         start = System.currentTimeMillis();
-        while(end-start <= 1000){
+        while (end - start <= 1000) {
             end = System.currentTimeMillis();
         }
         System.out.println("YO");
     }
-    
-    public int deckCard(int x){
-        for(int i=4;i<10;i++){
+
+    public int deckCard(int x) {
+        for (int i = 4; i < 10; i++) {
             deckList.add(temp[i]);
         }
         deckList.remove(x);
         return deckList.get(0);
     }
-    
+
     public int[] ran() {
         for (int i = 1; i <= 10; i++) {
             ran2 = r.nextInt(Maxnum);
@@ -71,10 +86,11 @@ public class DeckOfCard {
                 card[j] = card[j + 1];
             }
             int[] numcop = new int[Maxnum];
-            System.arraycopy(card,0,numcop,0, Maxnum);
+            System.arraycopy(card, 0, numcop, 0, Maxnum);
             card = new int[Maxnum];
-            System.arraycopy(numcop,0,card,0, Maxnum);
+            System.arraycopy(numcop, 0, card, 0, Maxnum);
         }
         return temp;
     }
+
 }

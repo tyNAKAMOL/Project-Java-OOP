@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
@@ -103,66 +105,158 @@
             </Button>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="multiplePlayer" prefHeight="648.0" prefWidth="1152.0" style="-fx-background-color: #5893D3;">
+      <AnchorPane fx:id="multiplePlayer" layoutY="1.0" prefHeight="648.0" prefWidth="1152.0" style="-fx-background-color: #5893D3;">
          <children>
             <ImageView fx:id="btn_turnM" fitHeight="38.0" fitWidth="38.0" layoutX="1115.0" layoutY="1.0" onMouseClicked="#handleMouseClickturnM" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@images/turn.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="im1" fitHeight="150.0" fitWidth="200.0" layoutX="564.0" layoutY="249.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="im1" fitHeight="150.0" fitWidth="200.0" layoutX="564.0" layoutY="247.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@images/backsidecard.jpg" />
+                  <Image url="@../card2/back.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="im2" fitHeight="150.0" fitWidth="200.0" layoutX="559.0" layoutY="249.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="im2" fitHeight="150.0" fitWidth="200.0" layoutX="559.0" layoutY="247.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@images/backsidecard.jpg" />
+                  <Image url="@../card2/back.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="im3" fitHeight="150.0" fitWidth="200.0" layoutX="554.0" layoutY="249.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="im3" fitHeight="150.0" fitWidth="200.0" layoutX="554.0" layoutY="247.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@images/backsidecard.jpg" />
+                  <Image url="@../card2/back.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="im4" fitHeight="150.0" fitWidth="200.0" layoutX="549.0" layoutY="249.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="im4" fitHeight="150.0" fitWidth="200.0" layoutX="549.0" layoutY="247.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@images/backsidecard.jpg" />
+                  <Image url="@../card2/back.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="im5" fitHeight="150.0" fitWidth="200.0" layoutX="544.0" layoutY="249.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="im5" fitHeight="150.0" fitWidth="200.0" layoutX="544.0" layoutY="247.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@images/backsidecard.jpg" />
+                  <Image url="@../card2/back.png" />
                </image>
             </ImageView>
             <ImageView fx:id="card1_1" fitHeight="218.0" fitWidth="154.0" layoutX="597.0" layoutY="247.0" onMouseClicked="#handleButtoncloseCard1" pickOnBounds="true" preserveRatio="true" />
             <ImageView fx:id="fristcard1" fitHeight="218.0" fitWidth="154.0" layoutX="597.0" layoutY="247.0" onMouseClicked="#handleButtonopenCard1" pickOnBounds="true" preserveRatio="true" />
             <ImageView fx:id="firstcard1" fitHeight="218.0" fitWidth="154.0" layoutX="597.0" layoutY="247.0" onMouseClicked="#handleButtonopenCard1" pickOnBounds="true" preserveRatio="true" />
             <ImageView fx:id="cardplayer1_2" fitHeight="218.0" fitWidth="154.0" layoutX="627.0" layoutY="247.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="card1_3" fitHeight="218.0" fitWidth="154.0" layoutX="557.0" layoutY="247.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="card1_4" fitHeight="218.0" fitWidth="154.0" layoutX="587.0" layoutY="247.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="card1_5" fitHeight="218.0" fitWidth="154.0" layoutX="617.0" layoutY="247.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="card1_3" fitHeight="218.0" fitWidth="154.0" layoutX="657.0" layoutY="247.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="card1_4" fitHeight="218.0" fitWidth="154.0" layoutX="687.0" layoutY="247.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="card1_5" fitHeight="218.0" fitWidth="154.0" layoutX="717.0" layoutY="247.0" pickOnBounds="true" preserveRatio="true" />
             <Button fx:id="btn_standmutiple" layoutX="559.0" layoutY="289.0" mnemonicParsing="false" onMouseClicked="#handleButtonStandMutiple" prefHeight="26.0" prefWidth="82.0" style="-fx-background-color: #1C1D22;" text="stand" textFill="#f2f1f1" />
             <ImageView fx:id="card2_1" fitHeight="218.0" fitWidth="154.0" layoutX="355.0" layoutY="247.0" onMouseClicked="#handleButtoncloseCard2" pickOnBounds="true" preserveRatio="true" />
             <ImageView fx:id="firstcard2" fitHeight="218.0" fitWidth="154.0" layoutX="355.0" layoutY="247.0" onMouseClicked="#handleButtonopenCard2" pickOnBounds="true" preserveRatio="true" />
             <ImageView fx:id="card2_2" fitHeight="218.0" fitWidth="154.0" layoutX="385.0" layoutY="247.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="card2_3" fitHeight="218.0" fitWidth="154.0" layoutX="565.0" layoutY="247.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="card2_4" fitHeight="218.0" fitWidth="154.0" layoutX="595.0" layoutY="247.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="card2_5" fitHeight="218.0" fitWidth="154.0" layoutX="625.0" layoutY="247.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="card2_3" fitHeight="218.0" fitWidth="154.0" layoutX="415.0" layoutY="247.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="card2_4" fitHeight="218.0" fitWidth="154.0" layoutX="445.0" layoutY="247.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="card2_5" fitHeight="218.0" fitWidth="154.0" layoutX="475.0" layoutY="247.0" pickOnBounds="true" preserveRatio="true" />
             <Button fx:id="btn_Hitmutiple" layoutX="554.0" layoutY="333.0" mnemonicParsing="false" onMouseClicked="#handleButtonHitMutiple" prefHeight="26.0" prefWidth="82.0" style="-fx-background-color: #1C1D22;" text="Hit" textFill="#f4ebeb" />
-            <Button fx:id="PlayMuti" layoutX="554.0" layoutY="436.0" mnemonicParsing="false" onMouseClicked="#handleButtonplayMutiplae" prefHeight="26.0" prefWidth="91.0" style="-fx-background-color: #193C61; -fx-border-radius: 5em; -fx-background-radius: 5em;" text="Play" textFill="#fcf8f8" />
+            <Button fx:id="PlayMuti" layoutX="554.0" layoutY="493.0" mnemonicParsing="false" onMouseClicked="#handleButtonplayMutiplae" prefHeight="26.0" prefWidth="91.0" style="-fx-background-color: #193C61; -fx-border-radius: 5em; -fx-background-radius: 5em;" text="Play" textFill="#fcf8f8" />
             <Button fx:id="btn_nextplayer" layoutX="549.0" layoutY="311.0" mnemonicParsing="false" onMouseClicked="#handleButtonnextplayer" prefHeight="26.0" prefWidth="91.0" text="NextPlayer" />
-            <ImageView fx:id="im6" fitHeight="163.0" fitWidth="107.0" layoutX="539.0" layoutY="249.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="im6" fitHeight="163.0" fitWidth="107.0" layoutX="540.0" layoutY="246.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@images/backsidecard.jpg" />
+                  <Image url="@../card2/back.png" />
                </image>
             </ImageView>
+            <Button fx:id="btn_nextround" layoutX="1000.0" layoutY="579.0" mnemonicParsing="false" onMouseClicked="#handleButtonRound" text="nextRound" />
+            <ImageView fx:id="im1_6" fitHeight="163.0" fitWidth="105.0" layoutX="351.0" layoutY="247.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../card1/BACK2.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="im1_5" fitHeight="163.0" fitWidth="107.0" layoutX="343.0" layoutY="246.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../card1/BACK2.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="im1_4" fitHeight="163.0" fitWidth="107.0" layoutX="338.0" layoutY="246.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../card1/BACK2.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="im1_3" fitHeight="163.0" fitWidth="107.0" layoutX="333.0" layoutY="246.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../card1/BACK2.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="im1_2" fitHeight="163.0" fitWidth="107.0" layoutX="326.0" layoutY="246.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../card1/BACK2.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="im1_1" fitHeight="163.0" fitWidth="107.0" layoutX="319.0" layoutY="246.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../card1/BACK2.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="im6_3" fitHeight="163.0" fitWidth="107.0" layoutX="773.0" layoutY="247.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../card3/back.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="im5_3" fitHeight="163.0" fitWidth="107.0" layoutX="770.0" layoutY="247.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../card3/back.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="im4_3" fitHeight="163.0" fitWidth="107.0" layoutX="767.0" layoutY="247.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../card3/back.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="im3_3" fitHeight="163.0" fitWidth="107.0" layoutX="764.0" layoutY="247.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../card3/back.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="im2_3" fitHeight="163.0" fitWidth="107.0" layoutX="761.0" layoutY="247.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../card3/back.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="imx1_3" fitHeight="163.0" fitWidth="107.0" layoutX="758.0" layoutY="247.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../card3/back.png" />
+               </image>
+            </ImageView>
+            <RadioButton fx:id="btn_card1" layoutX="369.0" layoutY="424.0" mnemonicParsing="false" onMouseClicked="#handleMouseClickcard1" prefHeight="7.0" prefWidth="12.0" scaleX="1.2" scaleY="1.2">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </RadioButton>
+            <RadioButton fx:id="btn_card2" layoutX="584.0" layoutY="424.0" mnemonicParsing="false" onMouseClicked="#handleMouseClickcard2" prefHeight="7.0" prefWidth="12.0" scaleX="1.2" scaleY="1.2">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </RadioButton>
+            <RadioButton fx:id="btn_card3" layoutX="807.0" layoutY="424.0" mnemonicParsing="false" onMouseClicked="#handleMouseClickcard3" prefHeight="7.0" prefWidth="12.0" scaleX="1.2" scaleY="1.2">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </RadioButton>
+            <Rectangle fx:id="test" fill="#5893d3" height="480.0" layoutX="51.0" layoutY="98.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="200.0" />
             <Text fx:id="textplay" layoutX="303.0" layoutY="346.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="135.99996337890644">
                <font>
                   <Font size="33.0" />
                </font>
             </Text>
-            <Text fx:id="textnoplay" layoutX="694.0" layoutY="113.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="135.99996337890644">
+            <Text fx:id="textShowscore1" layoutX="136.0" layoutY="265.0" strokeType="OUTSIDE" strokeWidth="0.0">
+               <font>
+                  <Font size="50.0" />
+               </font>
+            </Text>
+            <Text fx:id="textscorep2" fill="#161943" layoutX="76.0" layoutY="369.0" strokeType="OUTSIDE" strokeWidth="0.0">
+               <font>
+                  <Font size="42.0" />
+               </font>
+            </Text>
+            <Text fx:id="textscorep1" fill="#161943" layoutX="76.0" layoutY="160.0" strokeType="OUTSIDE" strokeWidth="0.0">
+               <font>
+                  <Font size="42.0" />
+               </font>
+            </Text>
+            <Text fx:id="textnoplay" layoutX="433.0" layoutY="113.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="135.99996337890644">
                <font>
                   <Font size="23.0" />
                </font>
@@ -180,6 +274,16 @@
             <Text fx:id="textBJ" fill="#161943" layoutX="418.0" layoutY="184.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Blackjack">
                <font>
                   <Font size="92.0" />
+               </font>
+            </Text>
+            <Text fx:id="textround" fill="#161943" layoutX="68.0" layoutY="69.0" strokeType="OUTSIDE" strokeWidth="0.0">
+               <font>
+                  <Font size="46.0" />
+               </font>
+            </Text>
+            <Text fx:id="textShowscore2" layoutX="134.0" layoutY="476.0" strokeType="OUTSIDE" strokeWidth="0.0">
+               <font>
+                  <Font size="50.0" />
                </font>
             </Text>
          </children>
