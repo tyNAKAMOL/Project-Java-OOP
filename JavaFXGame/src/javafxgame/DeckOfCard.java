@@ -19,13 +19,12 @@ public class DeckOfCard {
     private Image imagecards;
     private int[] card = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
     ArrayList<Integer> deckList = new ArrayList<>();
-    private String[] nameImages = new String[10];
-    private int[] temp = new int[10];
+    private final String[] nameImages = new String[10];
+    private final long end = 0;
+    private final int[] temp = new int[10];
     private int Maxnum = 10;
-    private Random r = new Random();
+    private final Random r = new Random();
     private int ran2;
-    private long start;
-    private long end = 0;
 
     public DeckOfCard() {
     }
@@ -60,23 +59,6 @@ public class DeckOfCard {
         }
         return nameImages;
     }
-
-    public void time() {
-        start = System.currentTimeMillis();
-        while (end - start <= 1000) {
-            end = System.currentTimeMillis();
-        }
-        System.out.println("YO");
-    }
-
-    public int deckCard(int x) {
-        for (int i = 4; i < 10; i++) {
-            deckList.add(temp[i]);
-        }
-        deckList.remove(x);
-        return deckList.get(0);
-    }
-
     public int[] ran() {
         for (int i = 1; i <= 10; i++) {
             ran2 = r.nextInt(Maxnum);

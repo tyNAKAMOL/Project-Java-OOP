@@ -16,20 +16,19 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import java.util.Random;
+import javafx.animation.FadeTransition;
 import javafx.animation.TranslateTransition;
-import javafx.animation.Interpolator;
 import javafx.animation.PathTransition;
 import javafx.animation.RotateTransition;
 import javafx.animation.ScaleTransition;
+import javafx.geometry.Pos;
 import javafx.scene.control.RadioButton;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
-import javafx.scene.paint.Color;
 import javafx.scene.shape.CubicCurveTo;
 import javafx.scene.shape.MoveTo;
 import javafx.scene.shape.Path;
-import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
-import javafx.scene.transform.Rotate;
 import javafx.util.Duration;
 
 /**
@@ -40,9 +39,9 @@ import javafx.util.Duration;
 public class FXMLGameController implements Initializable {
 
     @FXML
-    private AnchorPane menu, singlePlayer, multiplePlayer, howToPlay;
+    private AnchorPane menu, singlePlayer, multiplePlayer, howToPlay,NamePlayer;
     @FXML
-    private Button btn_singleplayer, btn_Mutiplayer, btn_howtoplay, btn_Stand, btn_Hit, PlayMuti, btn_standmutiple, btn_Hitmutiple;
+    private Button btn_singleplayer, btn_Mutiplayer, btn_howtoplay, btn_Stand, btn_Hit, PlayMuti, btn_standmutiple, btn_Hitmutiple,btn_go;
     @FXML
     private ImageView btn_turnS, firstcard1, firstcard2, cardplayer1_2, card1_1, card2_1, card2_2, card1_3, card2_3, card1_4, card1_5;
     @FXML
@@ -52,18 +51,20 @@ public class FXMLGameController implements Initializable {
     @FXML
     private ImageView im1_1, im1_2, im1_3, im1_4, im1_5, im1_6;
     @FXML
-    private ImageView imx1_3, im2_3, im3_3, im4_3, im5_3, im6_3;
+    private ImageView imx1_3, im2_3, im3_3, im4_3, im5_3, im6_3,imscore;
     @FXML
     private Button btn_playgame, btn_nextplayer, btn_nextround;
     @FXML
-    private Rectangle test;
+    private TextField namePlayer1,namePlayer2;
     @FXML
     private RadioButton btn_card1, btn_card2, btn_card3;
     @FXML
-    private Text textnum, textf, textplay, textnoplay, textplayer, textBJ, textround, textscorep1, textscorep2, textShowscore1, textShowscore2;
+    private Text textnum, textf, textplay, textnoplay, textplayer, textBJ, textround, textscorep1, textscorep2, textShowscore1, textShowscore2,textNameEnd1,textNameEnd2,textScoreDown1,textScoreDown2;
 
     private String[] name = new String[10];
     private int[] deck = new int[10];
+    private String Nplayer1;
+    private String Nplayer2;
     private boolean player1;
     private boolean player2;
     private boolean cardp1_3 = false;
@@ -105,6 +106,8 @@ public class FXMLGameController implements Initializable {
     private TranslateTransition TCplayer2_4 = new TranslateTransition();
     private TranslateTransition TCplayer2_5 = new TranslateTransition();
     private TranslateTransition T = new TranslateTransition();
+    private FadeTransition fade = new FadeTransition();
+    private FadeTransition fadename = new FadeTransition();
     private Path TCplayer2_2P = new Path();
     private Path TCplayer1_2P = new Path();
 
@@ -247,6 +250,7 @@ public class FXMLGameController implements Initializable {
         btn_card2.relocate(55, 98);
         btn_card3.relocate(55, 98);
         textBJ.relocate(-1000, 400);
+        imscore.setImage(new Image("/JavaFXGAME/images/score.png"));
 
         RotateTransition RCplayer1_back = new RotateTransition();
         RotateTransition RCplayer1_1 = new RotateTransition();
@@ -274,11 +278,11 @@ public class FXMLGameController implements Initializable {
         RCplayer1_1.play();
 
         textround.setText("Round " + round);
-        textscorep1.setText("Player 1");
-        textscorep2.setText("Player 2");
+        textscorep1.setText(namePlayer2.getText());
+        textscorep2.setText(namePlayer1.getText());
         textShowscore1.setText(": " + score1);
         textShowscore2.setText(": " + score2);
-         System.out.println("card = "+yourCard);
+        System.out.println("card = "+yourCard);
         switch (yourCard) {
             case 1 ->                 {
                     Image imageback = new Image("/card1/BACK2.png");
@@ -302,133 +306,7 @@ public class FXMLGameController implements Initializable {
         cardplayer1_2.setImage(image[2]);
         card2_1.setImage(image[1]);
         card2_2.setImage(image[3]);
-        for (int i = 0; i < 10; i++) {
-            System.out.println(deck[i] + " , ");
-        }
-
-        /*if (deck[2] > deck[3]) {
-            textplayer.setText("Player 1");
-            player1 = true;
-            closeCard = true;
-            p1.add(deck[0]);
-            p1.add(deck[2]);
-            p2.add(deck[1]);
-            p2.add(deck[3]);
-
-            System.out.println("1");
-            firstcard2.setScaleX(0.6);
-            firstcard2.setScaleY(0.6);
-            TCplayer2_back.setNode(firstcard2);
-            TCplayer2_back.setDuration(Duration.millis(300));
-            TCplayer2_back.setDelay(Duration.millis(1000));
-            TCplayer2_back.setToY(-250);
-            TCplayer2_back.setToX(150);
-            TCplayer2_back.play();
-
-            card2_1.setScaleX(0.6);
-            card2_1.setScaleY(0.6);
-            TCplayer2_1.setNode(card2_1);
-            TCplayer2_1.setDuration(Duration.millis(300));
-            TCplayer2_1.setDelay(Duration.millis(1000));
-            TCplayer2_1.setToY(-250);
-            TCplayer2_1.setToX(150);
-            TCplayer2_1.play();
-
-            card2_2.setScaleX(0.6);
-            card2_2.setScaleY(0.6);
-            TCplayer2_2.setNode(card2_2);
-            TCplayer2_2.setDuration(Duration.millis(300));
-            TCplayer2_2.setDelay(Duration.millis(1000));
-            TCplayer2_2.setToY(-250);
-            TCplayer2_2.setToX(150);
-            TCplayer2_2.play();
-
-            //------------------player1----------------------//
-            TCplayer1_back.setNode(firstcard1);
-            TCplayer1_back.setDuration(Duration.millis(300));
-            TCplayer1_back.setDelay(Duration.millis(1000));
-            TCplayer1_back.setToX(-100);
-            TCplayer1_back.play();
-
-            TCplayer1_1.setNode(card1_1);
-            TCplayer1_1.setDuration(Duration.millis(300));
-            TCplayer1_1.setDelay(Duration.millis(1000));
-            TCplayer1_1.setToX(-100);
-            TCplayer1_1.play();
-
-            TCplayer1_2.setNode(cardplayer1_2);
-            TCplayer1_2.setDuration(Duration.millis(300));
-            TCplayer1_2.setDelay(Duration.millis(1000));
-            TCplayer1_2.setToX(-100);
-            TCplayer1_2.play();
-            T.setNode(textplay);
-            T.setDuration(Duration.millis(2000));
-            T.setToX(50);
-            textplay.setText(deck[2] + "+?/21");
-            T.play();
-            textnoplay.setText(deck[3] + "+?/21");
-
-        } else {
-            textplayer.setText("Player 2");
-            player2 = true;
-            closeCard = true;
-            System.out.println("2");
-            p1.add(deck[0]);
-            p1.add(deck[2]);
-            p2.add(deck[1]);
-            p2.add(deck[3]);
-            TCplayer1_back.setNode(firstcard1);
-            TCplayer1_back.setDelay(Duration.millis(300));
-            TCplayer1_back.setDuration(Duration.millis(1000));
-            TCplayer1_back.setToY(-250);
-            TCplayer1_back.setToX(-100);
-            TCplayer1_back.play();
-
-            TCplayer1_1.setNode(card1_1);
-            TCplayer1_1.setDelay(Duration.millis(300));
-            TCplayer1_1.setDuration(Duration.millis(1000));
-            TCplayer1_1.setToY(-250);
-            TCplayer1_1.setToX(-100);
-            TCplayer1_1.play();
-
-            TCplayer1_2.setNode(cardplayer1_2);
-            TCplayer1_2.setDuration(Duration.millis(300));
-            TCplayer1_2.setDelay(Duration.millis(1000));
-            TCplayer1_2.setToY(-250);
-            TCplayer1_2.setToX(-100);
-            TCplayer1_2.play();
-
-            //-----------------player2----------------------//       
-            TCplayer2_back.setNode(firstcard2);
-            TCplayer2_back.setDuration(Duration.millis(300));
-            TCplayer2_back.setDelay(Duration.millis(1000));
-            TCplayer2_back.setToX(150);
-            TCplayer2_back.play();
-
-            TCplayer2_1.setNode(card2_1);
-            TCplayer2_1.setDuration(Duration.millis(300));
-            TCplayer2_1.setDelay(Duration.millis(1000));
-            TCplayer2_1.setToX(150);
-            TCplayer2_1.play();
-
-            TCplayer2_2.setNode(card2_2);
-            TCplayer2_2.setDuration(Duration.millis(300));
-            TCplayer2_2.setDelay(Duration.millis(1000));
-            TCplayer2_2.setToX(150);
-            TCplayer2_2.play();
-            T.setNode(textplay);
-            T.setDuration(Duration.millis(1000));
-            T.setToX(50);
-            textplay.setText(deck[3] + "+?/21");
-            T.play();
-            textnoplay.setText(deck[2] + "+?/21");
-            firstcard1.setScaleX(0.6);
-            firstcard1.setScaleY(0.6);
-            card1_1.setScaleX(0.6);
-            card1_1.setScaleY(0.6);
-            cardplayer1_2.setScaleX(0.6);
-            cardplayer1_2.setScaleY(0.6);
-        }*/
+       
         if (deck[2] > deck[3]) {
             player1 = true;
             closeCard = true;
@@ -436,17 +314,30 @@ public class FXMLGameController implements Initializable {
             p1.add(deck[2]);
             p2.add(deck[1]);
             p2.add(deck[3]);
-
+            
+            fadename.setDuration(Duration.millis(8000));
+            fadename.setNode(textplayer);
+            fadename.setFromValue(0);
+            fadename.setToValue(1);
+            fadename.play();
+            textplayer.setText(namePlayer1.getText());
             System.out.println("player 1 = " + player1 + ",player 2 = " + player2);
             System.out.println("p1 = " + p1);
             System.out.println("p2 = " + p2);
 
+            fade.setDuration(Duration.millis(10000));
+            fade.setNode(textnoplay);
+            fade.setFromValue(0);
+            fade.setToValue(1);
+            fade.play();
+            
             TCplayer2_back.setNode(firstcard2);
             TCplayer2_back.setDuration(Duration.millis(300));
             TCplayer2_back.setDelay(Duration.millis(3000));
             TCplayer2_back.setToY(-250); //up 
             TCplayer2_back.setToX(150);
             TCplayer2_back.play();
+            
 
             TCplayer2_1.setNode(card2_1);
             TCplayer2_1.setDuration(Duration.millis(300));
@@ -468,7 +359,7 @@ public class FXMLGameController implements Initializable {
             scaleTran.setDelay(Duration.valueOf("3000ms"));
             scaleTran.setToX(0.6);
             scaleTran.setToY(0.6);
-//            TCplayer2_2.setDuration(Duration.millis(2000));
+//          TCplayer2_2.setDuration(Duration.millis(2000));
 
             TCplayer2_3.setNode(card2_3);
             TCplayer2_3.setDelay(Duration.valueOf("3000ms"));
@@ -540,11 +431,7 @@ public class FXMLGameController implements Initializable {
             TCplayer1_2PT.play();
             TCplayer1_2.play();
 
-            T.setNode(textplay);
-            T.setDuration(Duration.millis(1000));
-            T.setToX(50);
             textplay.setText(deck[2] + "+?/21");
-            T.play();
             textnoplay.setText(deck[3] + "+?/21");
 
             //-------------------setScale----------------------//
@@ -584,7 +471,13 @@ public class FXMLGameController implements Initializable {
         } else {
             player2 = true;
             closeCard = true;
+            textplayer.setText(namePlayer2.getText());
             System.out.println("player 1 = " + player1 + ",player 2 = " + player2);
+            fade.setDuration(Duration.millis(10000));
+            fade.setNode(textnoplay);
+            fade.setFromValue(0);
+            fade.setToValue(1);
+            fade.play();
             p1.add(deck[0]);
             p1.add(deck[2]);
             p2.add(deck[1]);
@@ -687,11 +580,7 @@ public class FXMLGameController implements Initializable {
             TCplayer2_2PT.play();
             jack.play();
 
-            T.setNode(textplay);
-            T.setDuration(Duration.millis(1000));
-            T.setToX(50);
             textplay.setText(deck[3] + "+?/21");
-            T.play();
             textnoplay.setText(deck[2] + "+?/21");
 
             scaleTran4.setNode(firstcard1);
@@ -737,6 +626,7 @@ public class FXMLGameController implements Initializable {
      */
     @FXML
     private void handleButtonAction(MouseEvent event) {
+ 
         menu.setVisible(true);
         System.out.print("Chlick");
         if (event.getTarget() == btn_singleplayer) {
@@ -774,11 +664,18 @@ public class FXMLGameController implements Initializable {
 
     @FXML
     private void handleMouseClickMuti(MouseEvent event) {
-        multiplePlayer.setVisible(true);
+        multiplePlayer.setVisible(false);
         singlePlayer.setVisible(false);
+        NamePlayer.setVisible(true);
         menu.setVisible(false);
         howToPlay.setVisible(false);
-        //backscore.setVisible(false);
+        namePlayer1.setAlignment(Pos.BOTTOM_RIGHT);
+        namePlayer2.setAlignment(Pos.BOTTOM_RIGHT);
+        Nplayer1 = namePlayer1.getText();
+        Nplayer2 = namePlayer2.getText();
+        System.out.println(namePlayer1.getText());
+        System.out.println(namePlayer2.getText());
+  
     }
 
     @FXML
@@ -787,7 +684,6 @@ public class FXMLGameController implements Initializable {
         singlePlayer.setVisible(false);
         multiplePlayer.setVisible(false);
         howToPlay.setVisible(false);
-        //backscore.setVisible(false);
     }
 
     @FXML
@@ -796,7 +692,7 @@ public class FXMLGameController implements Initializable {
         singlePlayer.setVisible(false);
         multiplePlayer.setVisible(false);
         howToPlay.setVisible(false);
-        //backscore.setVisible(false);
+ 
     }
 
     private void handleMouseClickturn(MouseEvent event) {
@@ -804,7 +700,7 @@ public class FXMLGameController implements Initializable {
         singlePlayer.setVisible(false);
         multiplePlayer.setVisible(false);
         howToPlay.setVisible(false);
-        //backscore.setVisible(false);
+
     }
 
     @FXML
@@ -822,7 +718,6 @@ public class FXMLGameController implements Initializable {
         btn_playgame.relocate(510, 283);
         btn_Stand.relocate(809, 358);
         btn_Hit.relocate(726, 358);
-        test.setFill(Color.RED);
 
         deck = card.ran();
         name = card.nameImage(2);
@@ -852,30 +747,22 @@ public class FXMLGameController implements Initializable {
     //----------------------MutiplePlayer--------------------------//
     @FXML
     private void handleButtonplayMutiplae(MouseEvent event) {
-        test.setFill(Color.valueOf("#BDDAFD"));
         deck = card2.ran();
         sum1 = deck[2] + deck[0];
         sum2 = deck[3] + deck[1];
         name = card2.nameImage(yourCard);
+        imscore.setImage(new Image("/JavaFXGAME/images/score.png"));
         for (int i = 0; i < 10; i++) {
             image[i] = new Image(name[i]);
         }
         PlayMuti.relocate(965, 285);
+        btn_nextround.relocate(-965,285);
         play();
     }
 
     @FXML
     private void handleButtonopenCard1(MouseEvent event) {
         closeCard = false;
-        RotateTransition RCplayer1_1 = new RotateTransition();
-
-        RCplayer1_1.setNode(card1_1);
-        RCplayer1_1.setAxis(Rotate.Y_AXIS);
-        RCplayer1_1.setFromAngle(0);
-        RCplayer1_1.setDuration(Duration.millis(100));
-        RCplayer1_1.setByAngle(0);
-        RCplayer1_1.setInterpolator(Interpolator.LINEAR);
-        RCplayer1_1.play();
         if (player1) {
             firstcard1.relocate(2000, 223);
             if (countp1 > 2) {
@@ -892,15 +779,6 @@ public class FXMLGameController implements Initializable {
     @FXML
     private void handleButtonopenCard2(MouseEvent event) {
         closeCard = false;
-
-        RotateTransition RCplayer2_1 = new RotateTransition();
-        RCplayer2_1.setNode(card2_1);
-        RCplayer2_1.setAxis(Rotate.Y_AXIS);
-        RCplayer2_1.setFromAngle(0);
-        RCplayer2_1.setDuration(Duration.millis(200));
-        RCplayer2_1.setByAngle(0);
-        RCplayer2_1.setInterpolator(Interpolator.LINEAR);
-        RCplayer2_1.play();
         if (player2) {
             firstcard2.relocate(2000, 223);
             if (countp2 > 2) {
@@ -918,23 +796,6 @@ public class FXMLGameController implements Initializable {
     private void handleButtoncloseCard1(MouseEvent event) {
 
         closeCard = true;
-        //RotateTransition RCplayer1_back = new RotateTransition();
-        //RotateTransition RCplayer1_1 = new RotateTransition();
-
-        /*RCplayer1_back.setNode(firstcard1);
-        RCplayer1_back.setAxis(Rotate.Y_AXIS);
-        RCplayer1_back.setFromAngle(0);
-        RCplayer1_back.setDuration(Duration.millis(200));
-        RCplayer1_back.setByAngle(180);
-        RCplayer1_back.setInterpolator(Interpolator.LINEAR);
-        RCplayer1_back.play();
-        RCplayer1_1.setNode(card1_1);
-        RCplayer1_1.setAxis(Rotate.Y_AXIS);
-        RCplayer1_1.setFromAngle(0);
-        RCplayer1_1.setDuration(Duration.millis(50));
-        RCplayer1_1.setByAngle(360);
-        RCplayer1_1.setInterpolator(Interpolator.LINEAR);
-        RCplayer1_1.play();*/
         if (player1) {
             firstcard1.relocate(597, 247);
             if (countp1 > 2) {
@@ -951,22 +812,6 @@ public class FXMLGameController implements Initializable {
     @FXML
     private void handleButtoncloseCard2(MouseEvent event) {
         closeCard = true;
-        /*RotateTransition RCplayer2_back = new RotateTransition();
-        RotateTransition RCplayer2_1 = new RotateTransition();
-        RCplayer2_back.setNode(firstcard2);
-        RCplayer2_back.setAxis(Rotate.Y_AXIS);
-        RCplayer2_back.setFromAngle(0);
-        RCplayer2_back.setDuration(Duration.millis(200));
-        RCplayer2_back.setByAngle(180);
-        RCplayer2_back.setInterpolator(Interpolator.LINEAR);
-        RCplayer2_back.play();
-        RCplayer2_1.setNode(card2_1);
-        RCplayer2_1.setAxis(Rotate.Y_AXIS);
-        RCplayer2_1.setFromAngle(0);
-        RCplayer2_1.setDuration(Duration.millis(50));
-        RCplayer2_1.setByAngle(360);
-        RCplayer2_1.setInterpolator(Interpolator.LINEAR);
-        RCplayer2_1.play();*/
         if (player2) {
             firstcard2.relocate(355, 247);
             if (countp2 > 2) {
@@ -1007,28 +852,17 @@ public class FXMLGameController implements Initializable {
                 System.out.println("card1-5");
             }
             for (int x = 0; x < p1.size(); x++) {
-                //System.out.println(" " + sum1 + " + " + p1.get(x));
+                System.out.println(" " + sum1 + " + " + p1.get(x));
                 sum1 += p1.get(x);
-                //System.out.println("Sum1 = " + sum1);
+                System.out.println("Sum1 = " + sum1);
             }
             System.out.println(p1);
-            //System.out.println("closecard = " + closeCard);
-            //System.out.println("Sum1 = " + sum1);
             if (closeCard) {
                 textplay.setText(sum1 - deck[0] + "+?/21");
             } else {
                 textplay.setText((sum1) + "/21");
             }
             countimage++;
-            /*if ((countp1 == 3) && (cardp1_3 == false)) {
-                cardp1_3 = true;
-            }
-            if ((countp1 == 4) && (cardp1_4 == false)) {
-                cardp1_4 = true;
-            }
-            if ((countp1 == 5) && (cardp1_5 == false)) {
-                cardp1_5 = true;
-            }*/
         } else {
             sum2 = 0;
             countp2++;
@@ -1054,28 +888,17 @@ public class FXMLGameController implements Initializable {
                 System.out.println("card2-5");
             }
             for (int x = 0; x < p2.size(); x++) {
-                //System.out.println(" " + sum2 + " + " + p2.get(x));
+                System.out.println(" " + sum2 + " + " + p2.get(x));
                 sum2 += p2.get(x);
-                //System.out.println("Sum2 = " + sum2);
+                System.out.println("Sum2 = " + sum2);
             }
             System.out.println(p2);
-            //System.out.println("closecard = " + closeCard);
-            //System.out.println("Sum2 = " + sum2);
             if (closeCard) {
                 textplay.setText((sum2 - deck[1]) + "+?/21");
             } else {
                 textplay.setText((sum2) + "/21");
             }
             countimage++;
-            /*if ((countp2 == 3) && (cardp2_3 == false)) {
-                cardp2_3 = true;
-            }
-            if ((countp2 == 4) && (cardp2_4 == false)) {
-                cardp2_4 = true;
-            }
-            if ((countp2 == 5) && (cardp2_5 == false)) {
-                cardp2_5 = true;
-            }*/
         }
         btn_standmutiple.relocate(965, 285);
         btn_Hitmutiple.relocate(965, 285);
@@ -1095,13 +918,18 @@ public class FXMLGameController implements Initializable {
             textplay.setText(null);
             textnoplay.setText(null);
             textplayer.setText(null);
+            textNameEnd1.setText(namePlayer2.getText());
+            textNameEnd2.setText(namePlayer1.getText());
+            textScoreDown1.setText(sum2+" / 21");
+            textScoreDown2.setText(sum1+" / 21");
+            btn_nextround.relocate(971,570);
             btn_standmutiple.relocate(-965, 285);
             btn_Hitmutiple.relocate(-965, 285);
             btn_nextplayer.relocate(-978, 428);
             if (((sum1 > sum2) && (sum1 <= 21)) || (sum2 > 21)) {
-                score1++;
-            } else if (((sum1 < sum2) && (sum2 <= 21)) || (sum1 > 21)) {
                 score2++;
+            } else if (((sum1 < sum2) && (sum2 <= 21)) || (sum1 > 21)) {
+                score1++;
             }
             System.out.println("player1 : " + sum1 + " player2 : " + sum2);
             textShowscore1.setText(": " + score1);
@@ -1137,7 +965,7 @@ public class FXMLGameController implements Initializable {
                 TCplayer2_2.setToX(5);
                 TCplayer2_2.play();
                 System.out.println(cardp2_3);
-                //if (cardp2_3) {
+   
                 card2_3.setScaleX(1);
                 card2_3.setScaleY(1);
                 TCplayer2_3.setNode(card2_3);
@@ -1147,9 +975,7 @@ public class FXMLGameController implements Initializable {
                 TCplayer2_3.setToX(5);
                 System.out.println("print");
                 TCplayer2_3.play();
-                //}
-                //if (cardp2_4) {
-                //TranslateTransition TCplayer2_4 = new TranslateTransition();
+
                 card2_4.setScaleX(1);
                 card2_4.setScaleY(1);
                 TCplayer2_4.setNode(card2_4);
@@ -1158,9 +984,7 @@ public class FXMLGameController implements Initializable {
                 TCplayer2_4.setToY(5);
                 TCplayer2_4.setToX(5);
                 TCplayer2_4.play();
-                //}
-                //if (cardp2_5) {
-                //TranslateTransition TCplayer2_5 = new TranslateTransition();
+
                 card2_5.setScaleX(1);
                 card2_5.setScaleY(1);
                 TCplayer2_5.setNode(card2_5);
@@ -1169,7 +993,7 @@ public class FXMLGameController implements Initializable {
                 TCplayer2_5.setToY(5);
                 TCplayer2_5.setToX(5);
                 TCplayer2_5.play();
-                //}
+          
 
                 //----------------player 1------------------//
                 TCplayer1_back.setDelay(Duration.millis(100));
@@ -1179,43 +1003,32 @@ public class FXMLGameController implements Initializable {
 
                 TCplayer1_1.setDelay(Duration.millis(100));
                 TCplayer1_1.setDuration(Duration.millis(300));
-                //TCplayer1_1.setToY(-50);
                 TCplayer1_1.setToX(5);
                 TCplayer1_1.play();
 
                 TCplayer1_2.setDuration(Duration.millis(300));
                 TCplayer1_2.setDelay(Duration.millis(100));
-                //TCplayer1_2.setToY(-50);
                 TCplayer1_2.setToX(5);
                 TCplayer1_2.play();
 
-                //if (cardp1_3) {
-                //TranslateTransition TCplayer1_3 = new TranslateTransition();
                 TCplayer1_3.setNode(card1_3);
                 TCplayer1_3.setDuration(Duration.millis(300));
                 TCplayer1_3.setDelay(Duration.millis(100));
-                //TCplayer1_3.setToY(-50);
+  
                 TCplayer1_3.setToX(5);
                 TCplayer1_3.play();
-                //}
-                //if (cardp1_4) {
-                //TranslateTransition TCplayer1_4 = new TranslateTransition();
+       
                 TCplayer1_4.setNode(card1_4);
                 TCplayer1_4.setDuration(Duration.millis(300));
                 TCplayer1_4.setDelay(Duration.millis(100));
-                //TCplayer1_4.setToY(-50);
                 TCplayer1_4.setToX(5);
                 TCplayer1_4.play();
-                //}
-                //if (cardp1_5) {
-                //TranslateTransition TCplayer1_5 = new TranslateTransition();
+        
                 TCplayer1_5.setNode(card1_5);
                 TCplayer1_5.setDuration(Duration.millis(300));
                 TCplayer1_5.setDelay(Duration.millis(100));
-                //TCplayer1_5.setToY(-50);
                 TCplayer1_5.setToX(5);
                 TCplayer1_5.play();
-                //}
 
             } else {
                 firstcard1.setImage(null);
@@ -1249,8 +1062,7 @@ public class FXMLGameController implements Initializable {
                 TCplayer1_2.play();
                 System.out.println("cardp1_3 is " + cardp1_3);
                 System.out.println("cardp2_3 is " + cardp2_3);
-                //if (cardp1_3) {
-                //TranslateTransition TCplayer1_3 = new TranslateTransition();
+
                 card1_3.setScaleX(1);
                 card1_3.setScaleY(1);
                 TCplayer1_3.setNode(card1_3);
@@ -1259,9 +1071,7 @@ public class FXMLGameController implements Initializable {
                 TCplayer1_3.setToY(5);
                 TCplayer1_3.setToX(5);
                 TCplayer1_3.play();
-                //}
-                //if (cardp1_4) {
-                //TranslateTransition TCplayer1_4 = new TranslateTransition();
+
                 card1_4.setScaleX(1);
                 card1_4.setScaleY(1);
                 TCplayer1_4.setNode(card1_4);
@@ -1270,8 +1080,7 @@ public class FXMLGameController implements Initializable {
                 TCplayer1_4.setToY(5);
                 TCplayer1_4.setToX(5);
                 TCplayer1_4.play();
-                //}
-                //if (cardp1_5) {
+            
                 card1_5.setScaleX(1);
                 card1_5.setScaleY(1);
                 TCplayer1_5.setNode(card1_5);
@@ -1280,7 +1089,7 @@ public class FXMLGameController implements Initializable {
                 TCplayer1_5.setToY(5);
                 TCplayer1_5.setToX(5);
                 TCplayer1_5.play();
-                //}
+                
 
                 //-----------------player 2---------------------//
                 TCplayer2_back.setDuration(Duration.millis(300));
@@ -1297,27 +1106,25 @@ public class FXMLGameController implements Initializable {
                 TCplayer2_2.setDelay(Duration.millis(100));
                 TCplayer2_2.setToX(-5);
                 TCplayer2_2.play();
-                //if (cardp2_3) {
+            
                 TCplayer2_3.setNode(card2_3);
                 TCplayer2_3.setDuration(Duration.millis(300));
                 TCplayer2_3.setDelay(Duration.millis(100));
                 TCplayer2_3.setToX(-5);
                 TCplayer2_3.play();
-                //}
-                //if (cardp2_4) {
+            
                 TCplayer2_4.setNode(card2_4);
                 TCplayer2_4.setDuration(Duration.millis(300));
                 TCplayer2_4.setDelay(Duration.millis(100));
                 TCplayer2_4.setToX(-5);
                 TCplayer2_4.play();
-                //}
-                //if (cardp2_5) {
+             
                 TCplayer2_5.setNode(card2_5);
                 TCplayer2_5.setDuration(Duration.millis(300));
                 TCplayer2_5.setDelay(Duration.millis(100));
                 TCplayer2_5.setToX(-5);
                 TCplayer2_5.play();
-                //}
+  
             }
         } else {
             btn_standmutiple.relocate(965, 285);
@@ -1332,7 +1139,7 @@ public class FXMLGameController implements Initializable {
         btn_standmutiple.relocate(977, 417);
         btn_Hitmutiple.relocate(977, 461);
         btn_nextplayer.relocate(965, 285);
-        //-------------------------case1---------------------//
+        
         if (player1) {
             firstcard2.setScaleX(1);
             firstcard2.setScaleY(1);
@@ -1406,8 +1213,7 @@ public class FXMLGameController implements Initializable {
             TCplayer1_2.setDelay(Duration.millis(300));
             TCplayer1_2.setToY(-250);
             TCplayer1_2.play();
-            //if (cardp1_3) {
-            //TranslateTransition TCplayer1_3 = new TranslateTransition();
+           
             card1_3.setScaleX(0.6);
             card1_3.setScaleY(0.6);
             TCplayer1_3.setNode(card1_3);
@@ -1415,9 +1221,7 @@ public class FXMLGameController implements Initializable {
             TCplayer1_3.setDelay(Duration.millis(300));
             TCplayer1_3.setToY(-250);
             TCplayer1_3.play();
-            //}
-            //if (cardp1_4) {
-            //TranslateTransition TCplayer1_4 = new TranslateTransition();
+            
             card1_4.setScaleX(0.6);
             card1_4.setScaleY(0.6);
             TCplayer1_4.setNode(card1_4);
@@ -1425,9 +1229,7 @@ public class FXMLGameController implements Initializable {
             TCplayer1_4.setDelay(Duration.millis(300));
             TCplayer1_4.setToY(-250);
             TCplayer1_4.play();
-            //}
-            //if (cardp1_5) {
-            //TranslateTransition TCplayer1_5 = new TranslateTransition();
+            
             card1_5.setScaleX(0.6);
             card1_5.setScaleY(0.6);
             TCplayer1_5.setNode(card1_5);
@@ -1435,9 +1237,7 @@ public class FXMLGameController implements Initializable {
             TCplayer1_5.setDelay(Duration.millis(300));
             TCplayer1_5.setToY(-250);
             TCplayer1_5.play();
-            //}
-            //if (cardp2_3) {
-            //TranslateTransition TCplayer2_3 = new TranslateTransition();
+          
             card2_3.setScaleX(1);
             card2_3.setScaleY(1);
             TCplayer2_3.setNode(card2_3);
@@ -1445,9 +1245,7 @@ public class FXMLGameController implements Initializable {
             TCplayer2_3.setDelay(Duration.millis(300));
             TCplayer2_3.setToY(5);
             TCplayer2_3.play();
-            //}
-            //if (cardp2_4) {
-            //TranslateTransition TCplayer2_4 = new TranslateTransition();
+            
             card2_4.setScaleX(1);
             card2_4.setScaleY(1);
             TCplayer2_4.setNode(card2_4);
@@ -1455,9 +1253,7 @@ public class FXMLGameController implements Initializable {
             TCplayer2_4.setDelay(Duration.millis(300));
             TCplayer2_4.setToY(5);
             TCplayer2_4.play();
-            //}
-            //if (cardp2_5) {
-            //TranslateTransition TCplayer2_5 = new TranslateTransition();
+            
             card2_5.setScaleX(1);
             card2_5.setScaleY(1);
             TCplayer2_5.setNode(card2_5);
@@ -1474,7 +1270,6 @@ public class FXMLGameController implements Initializable {
             TCplayer1_back.setDelay(Duration.millis(300));
             TCplayer1_back.setDuration(Duration.millis(300));
             TCplayer1_back.setToY(5);
-            //TCplayer1_back.setToX(50);
             TCplayer1_back.play();
 
             card1_1.setScaleX(1);
@@ -1542,12 +1337,7 @@ public class FXMLGameController implements Initializable {
             TCplayer2_5.setToY(-250);
             TCplayer2_5.play();
 
-            T.setNode(textplay);
-            T.setDuration(Duration.millis(300));
-            T.setToX(50);
-            T.play();
-            //if (cardp1_3) {
-            //TranslateTransition TCplayer1_3 = new TranslateTransition();
+            
             card1_3.setScaleX(1);
             card1_3.setScaleY(1);
             TCplayer1_3.setNode(card1_3);
@@ -1555,9 +1345,7 @@ public class FXMLGameController implements Initializable {
             TCplayer1_3.setDelay(Duration.millis(300));
             TCplayer1_3.setToY(5);
             TCplayer1_3.play();
-            //}
-            //if (cardp1_4) {
-            //TranslateTransition TCplayer1_4 = new TranslateTransition();
+            
             card1_4.setScaleX(1);
             card1_4.setScaleY(1);
             TCplayer1_4.setNode(card1_4);
@@ -1565,9 +1353,7 @@ public class FXMLGameController implements Initializable {
             TCplayer1_4.setDelay(Duration.millis(300));
             TCplayer1_4.setToY(5);
             TCplayer1_4.play();
-            //}
-            //if (cardp1_5) {
-            //TranslateTransition TCplayer1_5 = new TranslateTransition();
+           
             card1_5.setScaleX(1);
             card1_5.setScaleY(1);
             TCplayer1_5.setNode(card1_5);
@@ -1575,9 +1361,7 @@ public class FXMLGameController implements Initializable {
             TCplayer1_5.setDelay(Duration.millis(300));
             TCplayer1_5.setToY(5);
             TCplayer1_5.play();
-            //}
-            //if (cardp2_3) {
-            //TranslateTransition TCplayer2_3 = new TranslateTransition();
+            
             card2_3.setScaleX(0.6);
             card2_3.setScaleY(0.6);
             TCplayer2_3.setNode(card2_3);
@@ -1585,9 +1369,7 @@ public class FXMLGameController implements Initializable {
             TCplayer2_3.setDelay(Duration.millis(300));
             TCplayer2_3.setToY(-250);
             TCplayer2_3.play();
-            //}
-            //if (cardp2_4) {
-            //TranslateTransition TCplayer2_4 = new TranslateTransition();
+            
             card2_4.setScaleX(0.6);
             card2_4.setScaleY(0.6);
             TCplayer2_4.setNode(card2_4);
@@ -1595,9 +1377,7 @@ public class FXMLGameController implements Initializable {
             TCplayer2_4.setDelay(Duration.millis(300));
             TCplayer2_4.setToY(-250);
             TCplayer2_4.play();
-            //}
-            //if (cardp2_5) {
-            //TranslateTransition TCplayer2_5 = new TranslateTransition();
+       
             card2_5.setScaleX(0.6);
             card2_5.setScaleY(0.6);
             TCplayer2_5.setNode(card2_5);
@@ -1605,12 +1385,12 @@ public class FXMLGameController implements Initializable {
             TCplayer2_5.setDelay(Duration.millis(300));
             TCplayer2_5.setToY(-250);
             TCplayer2_5.play();
-            //}
+            
         }
         if (player1) {
             player2 = true;
             player1 = false;
-            textplayer.setText("Player 2");
+            textplayer.setText(namePlayer2.getText());
             if (countp1 > 2) {
                 textnoplay.setText((sum1 - deck[0]) + "+?/21");
             } else {
@@ -1624,7 +1404,7 @@ public class FXMLGameController implements Initializable {
         } else {
             player1 = true;
             player2 = false;
-            textplayer.setText("Player 1");
+            textplayer.setText(namePlayer1.getText());
             if (countp2 > 2) {
                 textnoplay.setText((sum2 - deck[1]) + "+?/21");
             } else {
@@ -1650,6 +1430,11 @@ public class FXMLGameController implements Initializable {
         for (int i = 0; i < 10; i++) {
             image[i] = new Image(name[i]);
         }
+        textNameEnd1.setText(null);
+        textNameEnd2.setText(null);
+        textScoreDown1.setText(null);
+        textScoreDown2.setText(null);
+        btn_nextround.relocate(971,-570);
         reSet();
         play();
 
@@ -1668,6 +1453,15 @@ public class FXMLGameController implements Initializable {
     @FXML
     private void handleMouseClickcard3(MouseEvent event) {
         yourCard = 3;
+    }
+    @FXML
+    private void handleButtonGo(MouseEvent event) {
+        singlePlayer.setVisible(false);
+        multiplePlayer.setVisible(true);
+        menu.setVisible(false);
+        howToPlay.setVisible(true);
+        NamePlayer.setVisible(false);
+        //imscore.setImage(new Image("/JavaFXGAME/images/score.png"));
     }
 
 }

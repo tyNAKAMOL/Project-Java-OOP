@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
@@ -105,13 +106,61 @@
             </Button>
          </children>
       </AnchorPane>
+      <AnchorPane fx:id="NamePlayer" prefHeight="648.0" prefWidth="1152.0">
+         <children>
+            <ImageView fitHeight="652.0" fitWidth="1158.0" layoutX="-2.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/BG2.png" />
+               </image>
+            </ImageView>
+            <TextField fx:id="namePlayer1" layoutX="499.0" layoutY="250.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="46.0" prefWidth="249.0" promptText="Enter You Name1" style="-fx-background-color: ;">
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <font>
+                  <Font size="20.0" />
+               </font></TextField>
+            <TextField fx:id="namePlayer2" layoutX="499.0" layoutY="343.0" prefHeight="46.0" prefWidth="249.0" promptText="Enter You Name2">
+               <font>
+                  <Font size="20.0" />
+               </font></TextField>
+            <Text fill="#f7f6f6" layoutX="336.0" layoutY="378.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Player 2">
+               <font>
+                  <Font size="30.0" />
+               </font>
+            </Text>
+            <Text fill="#f7f6f6" layoutX="336.0" layoutY="288.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Player 1">
+               <font>
+                  <Font size="30.0" />
+               </font>
+            </Text>
+            <Button fx:id="btn_go" layoutX="816.0" layoutY="296.0" mnemonicParsing="false" onMouseClicked="#handleButtonGo" prefHeight="37.0" prefWidth="74.0" text="Go !">
+               <font>
+                  <Font size="19.0" />
+               </font>
+            </Button>
+         </children>
+      </AnchorPane>
       <AnchorPane fx:id="multiplePlayer" layoutY="1.0" prefHeight="648.0" prefWidth="1152.0" style="-fx-background-color: #5893D3;">
          <children>
+            <ImageView fitHeight="651.0" fitWidth="1157.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/BG2.png" />
+               </image>
+            </ImageView>
             <ImageView fx:id="btn_turnM" fitHeight="38.0" fitWidth="38.0" layoutX="1115.0" layoutY="1.0" onMouseClicked="#handleMouseClickturnM" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@images/turn.png" />
                </image>
             </ImageView>
+            <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
+            <Text fx:id="textplay" fill="#faf6f6" layoutX="353.0" layoutY="346.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="135.99996337890644">
+               <font>
+                  <Font size="33.0" />
+               </font>
+            </Text>
             <ImageView fx:id="im1" fitHeight="150.0" fitWidth="200.0" layoutX="564.0" layoutY="247.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../card2/back.png" />
@@ -138,6 +187,10 @@
                </image>
             </ImageView>
             <ImageView fx:id="card1_1" fitHeight="218.0" fitWidth="154.0" layoutX="597.0" layoutY="247.0" onMouseClicked="#handleButtoncloseCard1" pickOnBounds="true" preserveRatio="true" />
+            <Button fx:id="btn_nextround" layoutX="539.0" layoutY="294.0" mnemonicParsing="false" onMouseClicked="#handleButtonRound" prefHeight="41.0" prefWidth="107.0" style="-fx-background-color: #1C1D22; -fx-border-radius: 5em; -fx-background-radius: 5em;" text="NextRound" textFill="#faf9f9">
+               <font>
+                  <Font size="16.0" />
+               </font></Button>
             <ImageView fx:id="fristcard1" fitHeight="218.0" fitWidth="154.0" layoutX="597.0" layoutY="247.0" onMouseClicked="#handleButtonopenCard1" pickOnBounds="true" preserveRatio="true" />
             <ImageView fx:id="firstcard1" fitHeight="218.0" fitWidth="154.0" layoutX="597.0" layoutY="247.0" onMouseClicked="#handleButtonopenCard1" pickOnBounds="true" preserveRatio="true" />
             <ImageView fx:id="cardplayer1_2" fitHeight="218.0" fitWidth="154.0" layoutX="627.0" layoutY="247.0" pickOnBounds="true" preserveRatio="true" />
@@ -152,14 +205,16 @@
             <ImageView fx:id="card2_4" fitHeight="218.0" fitWidth="154.0" layoutX="445.0" layoutY="247.0" pickOnBounds="true" preserveRatio="true" />
             <ImageView fx:id="card2_5" fitHeight="218.0" fitWidth="154.0" layoutX="475.0" layoutY="247.0" pickOnBounds="true" preserveRatio="true" />
             <Button fx:id="btn_Hitmutiple" layoutX="554.0" layoutY="333.0" mnemonicParsing="false" onMouseClicked="#handleButtonHitMutiple" prefHeight="26.0" prefWidth="82.0" style="-fx-background-color: #1C1D22;" text="Hit" textFill="#f4ebeb" />
-            <Button fx:id="PlayMuti" layoutX="554.0" layoutY="493.0" mnemonicParsing="false" onMouseClicked="#handleButtonplayMutiplae" prefHeight="26.0" prefWidth="91.0" style="-fx-background-color: #193C61; -fx-border-radius: 5em; -fx-background-radius: 5em;" text="Play" textFill="#fcf8f8" />
-            <Button fx:id="btn_nextplayer" layoutX="549.0" layoutY="311.0" mnemonicParsing="false" onMouseClicked="#handleButtonnextplayer" prefHeight="26.0" prefWidth="91.0" text="NextPlayer" />
+            <Button fx:id="PlayMuti" layoutX="554.0" layoutY="493.0" mnemonicParsing="false" onMouseClicked="#handleButtonplayMutiplae" prefHeight="37.0" prefWidth="103.0" style="-fx-background-color: #3D3C3B; -fx-border-radius: 5em; -fx-background-radius: 5em;" text="Play" textFill="#fcf8f8">
+               <font>
+                  <Font size="18.0" />
+               </font></Button>
+            <Button fx:id="btn_nextplayer" layoutX="549.0" layoutY="311.0" mnemonicParsing="false" onMouseClicked="#handleButtonnextplayer" prefHeight="26.0" prefWidth="91.0" style="-fx-background-color: #1C1D22; -fx-border-radius: 5em; -fx-background-radius: 5em;" text="NextPlayer" textFill="#f4f3f3" />
             <ImageView fx:id="im6" fitHeight="163.0" fitWidth="107.0" layoutX="540.0" layoutY="246.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../card2/back.png" />
                </image>
             </ImageView>
-            <Button fx:id="btn_nextround" layoutX="1000.0" layoutY="579.0" mnemonicParsing="false" onMouseClicked="#handleButtonRound" text="nextRound" />
             <ImageView fx:id="im1_6" fitHeight="163.0" fitWidth="105.0" layoutX="351.0" layoutY="247.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../card1/BACK2.png" />
@@ -235,12 +290,7 @@
                   <Font size="14.0" />
                </font>
             </RadioButton>
-            <Rectangle fx:id="test" fill="#5893d3" height="480.0" layoutX="51.0" layoutY="98.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="200.0" />
-            <Text fx:id="textplay" layoutX="303.0" layoutY="346.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="135.99996337890644">
-               <font>
-                  <Font size="33.0" />
-               </font>
-            </Text>
+            <ImageView fx:id="imscore" fitHeight="480.0" fitWidth="200.0" layoutX="51.0" layoutY="98.0" pickOnBounds="true" preserveRatio="true" />
             <Text fx:id="textShowscore1" layoutX="136.0" layoutY="265.0" strokeType="OUTSIDE" strokeWidth="0.0">
                <font>
                   <Font size="50.0" />
@@ -256,7 +306,7 @@
                   <Font size="42.0" />
                </font>
             </Text>
-            <Text fx:id="textnoplay" layoutX="433.0" layoutY="113.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="135.99996337890644">
+            <Text fx:id="textnoplay" fill="#faf3f3" layoutX="433.0" layoutY="113.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="135.99996337890644">
                <font>
                   <Font size="23.0" />
                </font>
@@ -266,17 +316,17 @@
                   <Font size="33.0" />
                </font>
             </Text>
-            <Text fx:id="textplayer" fill="#2525bf" layoutX="557.0" layoutY="550.0" strokeType="OUTSIDE" strokeWidth="0.0">
+            <Text fx:id="textplayer" fill="#ededf2" layoutX="557.0" layoutY="550.0" strokeType="OUTSIDE" strokeWidth="0.0">
                <font>
                   <Font size="28.0" />
                </font>
             </Text>
-            <Text fx:id="textBJ" fill="#161943" layoutX="418.0" layoutY="184.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Blackjack">
+            <Text fx:id="textBJ" fill="#f1f1f7" layoutX="230.0" layoutY="171.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-family: Edo SZ;" text="Twenty One Times Lucky">
                <font>
-                  <Font size="92.0" />
+                  <Font size="69.0" />
                </font>
             </Text>
-            <Text fx:id="textround" fill="#161943" layoutX="68.0" layoutY="69.0" strokeType="OUTSIDE" strokeWidth="0.0">
+            <Text fx:id="textround" fill="#ededf2" layoutX="68.0" layoutY="69.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-family: edosz">
                <font>
                   <Font size="46.0" />
                </font>
@@ -284,6 +334,26 @@
             <Text fx:id="textShowscore2" layoutX="134.0" layoutY="476.0" strokeType="OUTSIDE" strokeWidth="0.0">
                <font>
                   <Font size="50.0" />
+               </font>
+            </Text>
+            <Text fx:id="textNameEnd1" fill="#f8f5f5" layoutX="412.0" layoutY="224.0" strokeType="OUTSIDE" strokeWidth="0.0">
+               <font>
+                  <Font size="26.0" />
+               </font>
+            </Text>
+            <Text fx:id="textNameEnd2" fill="#fffefe" layoutX="672.0" layoutY="224.0" strokeType="OUTSIDE" strokeWidth="0.0">
+               <font>
+                  <Font size="26.0" />
+               </font>
+            </Text>
+            <Text fx:id="textScoreDown1" fill="#f4f2f2" layoutX="412.0" layoutY="552.0" strokeType="OUTSIDE" strokeWidth="0.0">
+               <font>
+                  <Font size="26.0" />
+               </font>
+            </Text>
+            <Text fx:id="textScoreDown2" fill="#f7f4f4" layoutX="672.0" layoutY="552.0" strokeType="OUTSIDE" strokeWidth="0.0">
+               <font>
+                  <Font size="26.0" />
                </font>
             </Text>
          </children>
